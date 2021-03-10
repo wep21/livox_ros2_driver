@@ -583,12 +583,12 @@ std::shared_ptr<rclcpp::PublisherBase> Lddc::CreatePublisher(uint8_t msg_type,
       RCLCPP_INFO(cur_node_->get_logger(),
           "%s publish use PointCloud2 format", topic_name.c_str());
       return cur_node_->create_publisher<
-          sensor_msgs::msg::PointCloud2>(topic_name, 16);
+          sensor_msgs::msg::PointCloud2>(topic_name, rclcpp::SensorDataQoS());
     } else if (kLivoxCustomMsg == msg_type) {
       RCLCPP_INFO(cur_node_->get_logger(),
           "%s publish use livox custom format", topic_name);
       return cur_node_->create_publisher<
-          livox_interfaces::msg::CustomMsg>(topic_name, 16);
+          livox_interfaces::msg::CustomMsg>(topic_name, rclcpp::SensorDataQoS());
     }
 #if 0
     else if (kPclPxyziMsg == msg_type)  {
